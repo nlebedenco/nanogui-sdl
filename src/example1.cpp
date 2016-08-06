@@ -35,7 +35,9 @@
 #include <windows.h>
 #endif
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
+#include <gl/GL.h>
+
 
 using std::cout;
 using std::cerr;
@@ -291,7 +293,8 @@ public:
               }
           });
         }
-        performLayout(mNVGContext);
+        
+		performLayout(mNVGContext);
     }
 
     ~TestWindow() {
@@ -338,12 +341,12 @@ int main(int /* argc */, char ** /* argv */)
 
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION,2);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION,0);
     SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 1);
 
     int winWidth = 1024;
-    int winHeight = 768;
+    int winHeight = 600;
 
     // Create an application window with the following settings:
     window = SDL_CreateWindow(
@@ -365,7 +368,7 @@ int main(int /* argc */, char ** /* argv */)
 
     auto context = SDL_GL_CreateContext(window);
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED );
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     TestWindow *screen = new TestWindow( window, winWidth, winHeight );
 
@@ -389,15 +392,13 @@ int main(int /* argc */, char ** /* argv */)
                 }
                 screen->onEvent( e );
             }
-
-            SDL_SetRenderDrawColor(renderer, 0xd3, 0xd3, 0xd3, 0xff );
-            SDL_RenderClear( renderer );
+		
+			SDL_SetRenderDrawColor(renderer, 0xd3, 0xd3, 0xd3, 0xff);
+			SDL_RenderClear(renderer);
+			
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             screen->drawAll();
-
-            SDL_SetRenderDrawColor(renderer, 0xff, 0, 0, 0xff );
-            SDL_Rect r{ 0, 0, 20, 30 };
-            SDL_RenderFillRect( renderer, &r );
 
             //Update screen
             SDL_GL_SwapWindow(window);
