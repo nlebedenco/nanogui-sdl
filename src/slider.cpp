@@ -34,9 +34,9 @@ bool Slider::mouseDragEvent(const Vector2i &p, const Vector2i & /* rel */,
     return true;
 }
 
-bool Slider::mouseButtonEvent(const Vector2i &p, int /* button */, bool down, int /* modifiers */) {
-    if (!mEnabled)
-        return false;
+bool Slider::mouseButtonEvent(const Vector2i &p, int button, bool down, int modifiers) {
+	Widget::mouseButtonEvent(p, button, down, modifiers);
+
     mValue = std::min(std::max((p.x() - mPos.x()) / (float) mSize.x(), (float) 0.0f), (float) 1.0f);
     if (mCallback)
         mCallback(mValue);
