@@ -10,7 +10,7 @@
 */
 
 #include <include/button.h>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <include/theme.h>
 #include <include/opengl.h>
 
