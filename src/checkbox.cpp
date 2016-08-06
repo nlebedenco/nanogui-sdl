@@ -11,7 +11,7 @@
 
 #include <include/checkbox.h>
 #include <nanovg/nanovg.h>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <include/theme.h>
 #include <include/entypo.h>
 
