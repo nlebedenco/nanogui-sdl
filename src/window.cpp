@@ -14,7 +14,7 @@
 #include <include/opengl.h>
 #include <include/screen.h>
 #include <include/layout.h>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -82,7 +82,7 @@ void Window::draw(NVGcontext *ctx) {
     NVGpaint shadowPaint = nvgBoxGradient(
         ctx, mPos.x(), mPos.y(), mSize.x(), mSize.y(), cr*2, ds*2,
         mTheme->mDropShadow, mTheme->mTransparent);
-
+	
     nvgBeginPath(ctx);
     nvgRect(ctx, mPos.x()-ds,mPos.y()-ds, mSize.x()+2*ds, mSize.y()+2*ds);
     nvgRoundedRect(ctx, mPos.x(), mPos.y(), mSize.x(), mSize.y(), cr);
