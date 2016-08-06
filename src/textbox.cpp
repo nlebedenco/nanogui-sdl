@@ -17,7 +17,7 @@
 #include <include/textbox.h>
 #include <include/opengl.h>
 #include <include/theme.h>
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <regex>
 
 NAMESPACE_BEGIN(nanogui)
@@ -320,7 +320,7 @@ bool TextBox::focusEvent(bool focused) {
 bool TextBox::keyboardEvent(int key, int /* scancode */, int action, int modifiers)
 {
     if (mEditable && focused()) {
-        if (action == SDL_KEYDOWN /*|| action == GLFW_REPEAT*/)
+        if (action == SDL_PRESSED /*|| action == GLFW_REPEAT*/)
         {
             if (key == SDLK_LEFT )
             {

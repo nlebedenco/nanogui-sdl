@@ -106,7 +106,7 @@
 
 /* Allow enforcing the GL2 implementation of NanoVG */
 #define NANOVG_GL2_IMPLEMENTATION
-#include <SDL2/SDL.h>
+#include <SDL/SDL.h>
 #include <nanovg/nanovg_gl.h>
 
 NAMESPACE_BEGIN(nanogui)
@@ -223,7 +223,7 @@ void Screen::onEvent(SDL_Event& event)
         return;
 
       SDL_Keymod mods = SDL_GetModState();
-      keyCallbackEvent(event.key.keysym.mod, event.key.keysym.scancode, event.key.state, mods);
+      keyCallbackEvent(event.key.keysym.sym, event.key.keysym.scancode, event.key.state, mods);
     }
     break;
 
